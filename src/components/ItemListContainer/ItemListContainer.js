@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MOCK_DATA from '../../data/productos-flyshop.json';
 import {pedirDatos} from '../../helpers/pedirDatos.js';
 import {ItemList} from '../ItemList/ItemList.js';
+import { Loader } from "../Loader/Loader";
 
 export const ItemListContainer = () => {
 
@@ -34,7 +35,7 @@ export const ItemListContainer = () => {
             <hr/>
             {
                 loading
-                    ? <h2>Cargando...</h2>
+                    ? <Loader />
                     : <ItemList items={productos}/>
 
             }

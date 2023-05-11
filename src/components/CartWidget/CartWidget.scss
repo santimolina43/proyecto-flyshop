@@ -1,0 +1,23 @@
+
+.cart-widget {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    visibility: hidden; // la clase visibility es compatible para con transiciones de mostrar y ocultar elementos, porque
+                        // a diferencia del display none, no me mueve el resto de los componentes de lugar, ya que el elemento 
+                        // sigue estando, pero oculto
+
+    .cart-icon {
+        color: white;
+        font-size: 20px;
+    }
+
+    span {
+        color: white;
+        font-size: 20px;
+    }
+
+    &-active {
+        visibility: visible;
+    }
+}

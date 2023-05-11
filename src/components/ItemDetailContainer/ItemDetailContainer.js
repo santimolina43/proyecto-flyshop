@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { pedirDatos } from "../../helpers/pedirDatos";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import MOCK_DATA from '../../data/productos-flyshop.json'
+import { Loader } from "../Loader/Loader";
 
 
 export const ItemDetailContainer = () => {
@@ -28,7 +29,7 @@ export const ItemDetailContainer = () => {
         <div className="container my-5">
             {
                 loading
-                    ? <h2>Cargando...</h2>
+                    ? <Loader/>
                     : <ItemDetail item={item}/>
             }
         </div>
