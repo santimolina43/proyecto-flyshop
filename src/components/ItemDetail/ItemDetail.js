@@ -4,6 +4,7 @@ import { CartContext } from "../../context/CartContext";
 import { ItemCount } from "../ItemCount/ItemCount";
 import { Select } from "../Select/Select";
 import { Link } from "react-router-dom";
+import "./ItemDetail.scss"
 
 const talles = [
     {
@@ -44,7 +45,7 @@ export const ItemDetail = ({item}) => {
         <div>
             <h2>{item.name}</h2>
             <hr />
-            <img src={item.img} alt={item.name} />
+            <img className="itemdetail-img" src={item.img} alt={item.name} />
             <p>Stock: {item.stock}</p>
             <p>Precio: ${item.price}</p>
             {item.category === "accesorios" 

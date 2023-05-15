@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { pedirDatos } from "../../helpers/pedirDatos";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
-import MOCK_DATA from '../../data/productos-flyshop.json'
 import { Loader } from "../Loader/Loader";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase/config.js";
 
 
 export const ItemDetailContainer = () => {
@@ -15,14 +15,15 @@ export const ItemDetailContainer = () => {
 
     useEffect(() => {
         setLoading(true);
-
-        pedirDatos(true, MOCK_DATA)
-            .then((res) => {
-                setItem(res.find((prod) => prod.id === Number(itemId)) )
-            })
-            .finally(() => {
-                setLoading(false);
-            })
+         const docRef = doc(db, "productos", itemId)
+         getDoc(docRef)
+             .then((doc) => {
+                 setItem({
+                     id: doc,
+                     ...doc.data()
+                 })
+             })
+             .finally(() => setLoading(false))
     }, [itemId]);
 
     return (

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MOCK_DATA from '../../data/productos-flyshop.json';
-import {pedirDatos} from '../../helpers/pedirDatos.js';
 import {ItemList} from '../ItemList/ItemList.js';
 import { Loader } from "../Loader/Loader";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/config.js";
+
 
 export const ItemListContainer = () => {
 
@@ -13,20 +14,21 @@ export const ItemListContainer = () => {
 
     useEffect(() => { 
         setLoading(true);
-        pedirDatos(true, MOCK_DATA)
-            .then((res) => { 
-                if (categoryId) {
-                    setProductos(res.filter((prod) => prod.category === categoryId));
-                } else {
-                    setProductos(res);
-                }
+        const productosRef = collection(db, "productos")
+        const q = categoryId 
+                    ? query(productosRef, where("category", "==", categoryId))
+                    : productosRef
+        getDocs(q)
+            .then((res) => {
+                setProductos(res.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        ...doc.data()
+                    }
+                }))
             })
-            .catch((res) => { 
-                console.log('error'); 
-            })
-            .finally(() => { 
-                setLoading(false);
-            })
+            .finally(() => setLoading(false))
+
     }, ([categoryId]))
 
     return (
