@@ -7,12 +7,12 @@ import './CartWidget.scss'
 
 export const CartWidget = () => {
 
-    const {cart, totalCantidad} = useContext(CartContext);
+    const {cart} = useContext(CartContext);
 
     return (
         <Link to="/cart" className={`cart-widget ${cart.length > 0 ? "cart-widget-active" : ""}`}>
             <FaCartPlus className='cart-icon'/>
-            <span>{totalCantidad()}</span>
+            <span>{cart.length}</span>
         </Link>
     )
 }

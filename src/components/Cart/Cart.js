@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 import { BsFillTrashFill } from "react-icons/bs"
 import { Link } from "react-router-dom"
+import './Cart.scss'
 
 export const Cart = () => {
 
@@ -26,13 +27,17 @@ export const Cart = () => {
                 cart.map((item) => (
                     <div key={item.id}>
                         <h4>{item.name}</h4>
-                        <img src={item.img} alt="error"/>
+                        <img className="item-img" src={item.img} alt="error"/>
                         <div>
-                            {item.cantidad > 1 // ejemplo de un renderizado condicional usando un inline con fragment (&&)
-                                && <button onClick={() => (editCantidad(item.id, -1))} className="btn btn-outline-primary"> - </button>
+                            {
+                                item.cantidad > 1 // ejemplo de un renderizado condicional usando un inline con fragment (&&)
+                                    && <button onClick={() => (editCantidad(item.id, -1))} className="btn btn-outline-primary"> - </button>
                             }
                             <small>Cantidad: {item.cantidad} - Precio por unidad: {item.price}</small>
-                            <button onClick={() => (editCantidad(item.id, 1))} className="btn btn-primary"> + </button>
+                            {
+                                item.cantidad < item.stock
+                                    && <button onClick={() => (editCantidad(item.id, 1))} className="btn btn-primary"> + </button>
+                            }
                         </div>
                         <p>Precio total por item: {item.cantidad * item.price}</p>
                         <button onClick={() => (removerItem(item.id))} className="btn btn-danger"><BsFillTrashFill/></button>
