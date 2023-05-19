@@ -28,7 +28,7 @@ export const Cart = () => {
                         <h4>{item.name}</h4>
                         <img src={item.img} alt="error"/>
                         <div>
-                            {item.cantidad > 0 // ejemplo de un renderizado condicional usando un inline con fragment (&&)
+                            {item.cantidad > 1 // ejemplo de un renderizado condicional usando un inline con fragment (&&)
                                 && <button onClick={() => (editCantidad(item.id, -1))} className="btn btn-outline-primary"> - </button>
                             }
                             <small>Cantidad: {item.cantidad} - Precio por unidad: {item.price}</small>
@@ -41,7 +41,7 @@ export const Cart = () => {
                 ))
             }
             <h3>TOTAL CARRITO: {totalCarrito()}</h3>
-            <button className="btn btn-success m-2">Finalizar compra</button>           
+            <Link to="/checkout" className="btn btn-success m-2">Finalizar compra</Link>         
             <button onClick={vaciarCarrito} className="btn btn-danger m-2">Vaciar carrito</button>
         </div>
 

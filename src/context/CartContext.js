@@ -3,11 +3,9 @@ import { useState } from 'react';
 
 export const CartContext = createContext();
 
-//
 
 export const CartProvider = ({children}) => {
-    // const theme = "dark"
-    // const alumno = "santiago"
+
     const [cart, setCart] = useState([])
     const agregarAlCarrito = (item) => {
       setCart([...cart, item])
@@ -18,11 +16,8 @@ export const CartProvider = ({children}) => {
     }
   
     const totalCantidad = () => {
-      return cart.reduce((acc, prod) => acc + prod.cantidad, 0) // el metodo reduce lo que hace es reducir el array a un unico
-    }                                                           // valor, y trabaja con un acumulador. Lo que recibe por parametro
-                                                                // el reduce es como primer parametro la variable del acumulador
-                                                                // y como segundo parametro recibe cada elemento del array que voy
-                                                                // iterando
+      return cart.reduce((acc, prod) => acc + prod.cantidad, 0) 
+    }
 
     const vaciarCarrito = () => {
         setCart([])
@@ -45,10 +40,6 @@ export const CartProvider = ({children}) => {
     }
   
     return (
-            // <MyContext.Provider value={{ // si quiero pasarle varios valores al contexto para que puedan ser todos consumidos desde
-            //   theme,                     // todos los componentes hijos, lo que hago es pasarle como value al contexto un objeto que 
-            //   alumno                     // contenga todas las variables que yo quiero que sean consumidas
-            // }}>
         <CartContext.Provider value={{
             cart,
             agregarAlCarrito,
