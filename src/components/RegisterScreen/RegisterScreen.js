@@ -1,11 +1,11 @@
-import './LoginScreen.scss'
+import './RegisterScreen.scss'
 import { useContext, useState } from 'react';
 import { LoginContext } from '../../context/LoginContext';
 import { Link } from 'react-router-dom';
 
-export const LoginScreen = () => {
+export const RegisterScreen = () => {
 
-    const {googleLogin, login, error} = useContext(LoginContext);
+    const {register, error} = useContext(LoginContext);
 
     const [values, setValues] = useState({
         email: '',
@@ -23,7 +23,7 @@ export const LoginScreen = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        login(values)
+        register(values)
     }
 
 
@@ -31,7 +31,7 @@ export const LoginScreen = () => {
     return (
         <div className="login-container">
             <div className="login">
-                <h2>Login</h2>
+                <h2>Registrarme</h2>
                 <hr/>
                 <form onSubmit={handleSubmit}>
                     <input
@@ -50,11 +50,10 @@ export const LoginScreen = () => {
                         className="form-control my-2"
                         placeholder='Contraseña'>
                     </input>
-                    {error ? <p className='red'>Email y/o contraseña incorrectos</p> : <p></p>}
-                    <button className='btn btn-primary' type='submit'>Ingresar</button>
-                    <Link to={"/registrarme"}>Registrarme</Link>
+                    {error ? <p className='red'>Datos de registro inválidos</p> : <p></p>}
+                    <button className='btn btn-primary' type='submit'>Registrarme</button>
+                    <Link to={"/inicio"}>Ya estoy registrado</Link>
                 </form>
-                <button className='btn btn-primary' onClick={googleLogin}>Ingresar con Google</button>
             </div>
         </div>
     )

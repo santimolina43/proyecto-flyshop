@@ -1,60 +1,71 @@
-import { createContext } from "react"
+import { createContext, useEffect } from "react"
 import { useState } from "react"
+import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { auth, provider } from "../firebase/config"
 
 export const LoginContext = createContext()
-
-const MOCK_USERS = [
-    {
-        id: 1,
-        email: 'admin@coder.com',
-        password: 'coder'
-    },
-    {
-        id: 2,
-        email: 'user@coder.com',
-        password: 'coder'
-    },
-    {
-        id: 3,
-        email: 'admin3@coder.com',
-        password: 'tutor'
-    }
-]
 
 export const LoginProvider = ({children}) => {
 
     const [user, setUser] = useState({
-        email: 'user-predeterminado@coder.com',
-        logged: true
+        email: null,
+        logged: false
     })
-
     const [error, setError] = useState(false)
 
-    const login = (values) => {
-        const match = MOCK_USERS.find((user) => user.email === values.email && user.password === values.password)
-
-        if (match) {
-            console.log('entro')
-            setError(false)
-            setUser({
-                email: match.email,
-                logged: true
+    const register = (values) => {
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+            .catch((err) => {
+                console.log(err)    
+                setError(true)
             })
-        } else {
-            setError(true)
-        }
+    }
+
+    const login = (values) => {
+        signInWithEmailAndPassword(auth, values.email, values.password)
+            .catch((err) => {
+                console.log(err)    
+                setError(true)
+            })      
+    }
+
+    const googleLogin = () => {
+        signInWithPopup(auth, provider)
     }
 
     const logout = () => {
-        setUser({});
+        signOut(auth)
+            .then(() => {
+                setUser({
+                    email: null,
+                    logged: false
+                });
+            })
     }
+
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setError(false)
+                setUser({
+                    email: user.email,
+                    logged: true
+                })
+            } else {
+                logout()
+            }
+        })
+    }, [])
 
     return (
         <LoginContext.Provider value={{
             user,
             login,
             logout,
-            error
+            error,
+            register,
+            googleLogin
         }}>
             {children}
         </LoginContext.Provider>

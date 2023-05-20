@@ -1,13 +1,13 @@
+import MOCK_DATA from '../data/productos-flyshop.json' assert {type: "json"} // esto es para declarar el modulo y poder importarlo efectivamente, ya que este script no se corre
+                                                                             // dentro del aplicativo de WEB PACK de React JS (npm start)
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // para consumir el servicio de firebase dentro de mi proyecto:
-import { getFirestore } from "firebase/firestore"
-
-// iimporto getAuth para activar el modulo de validacion de usuario de firebase
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { getFirestore, collection, addDoc } from "firebase/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,6 +21,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider()
+const db = getFirestore(app);
+const productosRef = collection(db, 'productos')
+
+
+MOCK_DATA.forEach((item) => {
+    delete item.id
+
+    addDoc(productosRef, item)
+})
