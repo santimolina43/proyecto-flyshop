@@ -1,0 +1,26 @@
+
+.navbar-logos-container {
+    visibility: hidden;
+
+    button {
+        border: none;
+        background: none;
+
+        .menu-hamburguesa {
+            width: 50px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+
+    .navbar-logos-container {
+        visibility: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 20px;
+    }
+            
+}

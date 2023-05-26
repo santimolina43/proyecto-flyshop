@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const RegisterScreen = () => {
 
-    const {register, error} = useContext(LoginContext);
+    const {googleLogin, register, error} = useContext(LoginContext);
 
     const [values, setValues] = useState({
         email: '',
@@ -31,8 +31,7 @@ export const RegisterScreen = () => {
     return (
         <div className="login-container">
             <div className="login">
-                <h2>Registrarme</h2>
-                <hr/>
+                <h2 className='bottom-line'>Registrarme</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         onChange={handleValues}
@@ -51,8 +50,16 @@ export const RegisterScreen = () => {
                         placeholder='Contraseña'>
                     </input>
                     {error ? <p className='red'>Datos de registro inválidos</p> : <p></p>}
-                    <button className='btn btn-primary' type='submit'>Registrarme</button>
-                    <Link to={"/inicio"}>Ya estoy registrado</Link>
+                    <div className='registrarme-btn'>
+                        <button className='btn btn-primary' type='submit'>Registrarme</button>
+                        <Link className='btn btn-primary btn-registrado' to={"/inicio"}>Ya estoy registrado</Link>
+                    </div>
+                    <div className='registrarme-btn'>
+                        <button className='btn btn-primary btn-ingresar-google' onClick={googleLogin}>
+                            <img className='logo-google' src='./imgs/logo-google.png' alt='error'/>
+                            Registrarme con Google
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

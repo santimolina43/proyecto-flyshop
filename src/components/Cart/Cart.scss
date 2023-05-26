@@ -1,4 +1,45 @@
-.item-img {
-    height: 200px;
-    width: 200px;
+
+.cart-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    justify-content: center;
+    
+    .item-img {
+        height: 200px;
+        width: 200px;
+    }
+
+    p {
+        align-self: flex-start;
+        margin: 15px 0px;
+    }
+
+    button {
+        color: black;
+        border-radius: 100px;
+        padding: 6px 15px;
+        margin: 0px 10px;
+
+        &:hover {
+            background-color: rgb(207, 202, 202);
+        }
+    }
+    .yes-stock {border-color: black;}
+    .no-stock {
+        border-color: red;
+        
+        &:hover {
+            background-color: white;
+        }
+    }
+
+}
+

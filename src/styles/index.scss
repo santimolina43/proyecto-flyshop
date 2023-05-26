@@ -1,4 +1,19 @@
-@import './ItemListContainer/ItemListContainer.scss';
-@import './Navbar/Navbar.scss';
+
 @import "~bootstrap/scss/bootstrap";
-@import './CartWidget/CartWidget.scss'
+
+/* MISC */
+@import './misc/variables';
+@import './misc/normalize';
+@import './misc/mixins';
+
+
+.general-container {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.bottom-line {
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(198, 198, 198);
+    margin-bottom: 15px;
+}

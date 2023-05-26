@@ -1,4 +1,82 @@
-.itemdetail-img {
-    height: 400px;
-    width: 400px;
+
+.item-details {
+    width: fit-content;
+    max-width: 900px;
+
+    
+    .itemdetail-img {
+        height: 400px;
+        width: 400px;
+    }
+
+    .stock {
+        display: flex;
+        justify-content: center;
+        p {
+            margin: 0px 10px;
+        }
+    }
+
+    .precio {
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+        font-size: x-large;
+    }
+    
+    .contador {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .botones-cantidad {
+            text-align: center;
+
+            button {
+                color: black;
+                border-radius: 100px;
+                padding: 6px 15px;
+
+                &:hover {
+                    background-color: rgb(207, 202, 202);
+                }
+            }
+            .yes-stock {border-color: black;}
+            .no-stock {border-color: red;}
+        }
+
+        .btn-success {
+            width: 180px;
+        }
+    }
+
+    .items-no-stock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .btn {
+            width: fit-content;
+            margin-top: 10px;
+        }
+    }
+
+    .items-añadidos {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .btn-continuar {
+            margin-left: 20px;
+
+            &:hover {
+                background-color: rgb(207, 202, 202);
+                border: 1px solid black;
+            }
+            
+        }
+    }
 }
+
+

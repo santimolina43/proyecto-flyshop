@@ -7,6 +7,12 @@ export const CartContext = createContext();
 export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
+    // const [footer, setFooter] = useState(false);
+
+    // const fijarFooter = () => {
+    //     setFooter(true)
+    // }
+
     const agregarAlCarrito = (item) => {
       setCart([...cart, item])
     }
@@ -49,6 +55,8 @@ export const CartProvider = ({children}) => {
             removerItem,
             totalCarrito,
             editCantidad
+            // footer,
+            // fijarFooter
         }}>
             {children}
         </CartContext.Provider>

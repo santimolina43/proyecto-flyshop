@@ -42,35 +42,42 @@ export const ItemDetail = ({item}) => {
 
 
     return (
-        <div>
-            <h2>{item.name}</h2>
-            <hr />
-            <img className="itemdetail-img" src={item.img} alt={item.name} />
-            <p>Stock: {item.stock}</p>
-            <p>Precio: ${item.price}</p>
-            {item.category === "accesorios" 
-                ? <Select 
-                    set={setTalle}
-                    options={talles}
-                    />
-                : null
-            }
-            <br/>
-            {
-                item.stock === 0
-                ?   <h4>No hay stock de este producto</h4>
-                :   isInCart(item.id)
-                        ?   <Link to="/cart" className="btn btn-success">Ir al carrito</Link> 
-                        :   <ItemCount 
-                                max={item.stock}
-                                cantidad={cantidad}
-                                setCantidad={setCantidad}
-                                agregar={handleAgregar}
+        <div className="container my-5 general-container">
+            <h2 className="bottom-line">{item.name}</h2>
+            <div className="item-details">
+                <img className="itemdetail-img" src={item.img} alt={item.name} />
+                <div className="stock">
+                    <p>Stock: {item.stock}</p>
+                    {item.category === "accesorios" 
+                        ? <Select 
+                            set={setTalle}
+                            options={talles}
                             />
-            }
-            
-
-            <br />
+                        : null
+                    }
+                </div>
+                <p className="precio">Precio: ${item.price}</p>
+                <br/>
+                    {
+                        item.stock === 0
+                        ?   <div className="items-no-stock">
+                                <h4>No hay stock de este producto</h4>
+                                <Link to="/inicio" className="btn btn-success">Volver al inicio</Link>
+                            </div>
+                        :   isInCart(item.id)
+                                ?   <div className="items-añadidos">
+                                        <Link to="/cart" className="btn btn-success">Ir al carrito</Link> 
+                                        <Link to="/inicio" className="btn btn-continuar">Seguir comprando</Link>
+                                    </div>
+                                :   <ItemCount 
+                                        max={item.stock}
+                                        cantidad={cantidad}
+                                        setCantidad={setCantidad}
+                                        agregar={handleAgregar}
+                                    />
+                    }
+                <br />
+            </div>
             <p>{item.description}</p>
 
 

@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {ItemList} from '../ItemList/ItemList.js';
 import { Loader } from "../Loader/Loader";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config.js";
+import './ItemListContainer.scss'
+import { GeneralContext } from "../../context/GeneralContext.js";
 
 
 export const ItemListContainer = () => {
@@ -11,6 +13,9 @@ export const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const {categoryId} = useParams();
+    const {desfijarFooter} = useContext(GeneralContext);
+
+    desfijarFooter()
 
     useEffect(() => { 
         setLoading(true);
@@ -32,9 +37,8 @@ export const ItemListContainer = () => {
     }, ([categoryId]))
 
     return (
-        <div className="list-container">
-            <h2 className="list-container__title">Productos</h2>
-            <hr/>
+        <div className="container my-5 general-container">
+            <h2 className="list-container__title bottom-line">Productos</h2>
             {
                 loading
                     ? <Loader />

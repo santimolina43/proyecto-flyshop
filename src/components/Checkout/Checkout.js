@@ -3,10 +3,13 @@ import { Navigate } from "react-router-dom"
 import { CartContext } from "../../context/CartContext"
 import { collection, addDoc, query, where, documentId, getDocs, writeBatch } from "firebase/firestore"
 import { db } from "../../firebase/config"
+import './Checkout.scss'
+import { GeneralContext } from "../../context/GeneralContext"
 
 export const Checkout = () => {
 
     const {cart, totalCarrito, vaciarCarrito} = useContext(CartContext)
+    const {fijarFooter} = useContext(GeneralContext)
 
     const [orderId, setOrderId] = useState(null)
     const [values, setValues] = useState({
@@ -16,7 +19,6 @@ export const Checkout = () => {
     })
 
     const handleValues = (e) => {
-
         setValues({
             ...values,
             [e.target.name]: e.target.value
@@ -25,7 +27,6 @@ export const Checkout = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         // validaciones de formulario
         if (values.nombre.length < 3) {
             alert("El nombre es muy corto")
@@ -80,11 +81,12 @@ export const Checkout = () => {
 
     }
 
+    fijarFooter();
+
     if (orderId) {
         return (
-            <div className="container my-5">
-                <h2>Tu compra se registró exitosamente!</h2>
-                <hr/>
+            <div className="container my-5 general-container">
+                <h2 className="bottom-line">Tu compra se registró exitosamente!</h2>
                 <p>Guardá tu número de orden: <strong>{orderId}</strong></p>
             </div>
         )
@@ -95,10 +97,8 @@ export const Checkout = () => {
     }
 
     return (
-        <div className="container my-5">
-            <h2>Ingresa tus datos</h2>
-            <hr/>
-
+        <div className="container my-5 general-container">
+            <h2 className="bottom-line">Ingresa tus datos</h2>
             <form onSubmit={handleSubmit}>
                 <input 
                     onChange={handleValues}

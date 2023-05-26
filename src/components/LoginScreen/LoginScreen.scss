@@ -1,20 +1,96 @@
 
-.login-container {
-    width: 100%;
-    height: 100vh;
+
+.login-container-main {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: darkcyan;
 
-    .login {
-        width: 500px;
-        padding: 20px;
-        background-color: white;
-        border-radius: 20px;
+    .login-container-img {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255, 0.5);
 
-        .red {
-            color: red;
+        .img-fondo {
+            width: 100%;
+        }
+    }
+
+    .login-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--light-bg-color);
+    
+        .login {
+            width: 500px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+
+            h2 {
+                padding-left: 10px;
+            }
+    
+            .red {
+                color: red;
+            }
+
+            .login-btn {
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                
+                .btn-primary {
+                    color:black;
+                    border-color: black;
+                    background-color: var(--main-bg-color);
+                    margin: 5px;
+                    align-self: center;
+                    font-weight: bold;
+
+                    &:hover {
+                        background-color: green;
+                    }
+                }
+
+                .btn-ingresar-google {
+                    display: flex;
+                    flex-direction: row;
+                    background-color: white;
+
+                    .logo-google {
+                        width: 35px;
+                        height: 25px;
+                        margin-right: 5px;
+                    } 
+                }
+
+                .btn-registrarme {
+                    background-color: white;
+                    margin-left: 15px;
+
+                    &:hover {
+                        background-color: var(green);
+                    }
+                }
+            }
+
+            .reg-block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    margin:0;
+                }
+            }
         }
     }
 }
+

@@ -1,4 +1,43 @@
-.item-img {
-    height: 200px;
-    width: 200px;
+
+.item-display {
+    flex: 10 10 auto;
+    min-width: 150px;
+    max-width: 250px;
+    margin: 0;
+    padding: 10px;
+
+    .item-img {
+        height: auto;
+        width: 100%;
+    }
+
+    .btn-ver {
+        text-align: center;
+
+        .btn-ver-mas {
+            width: auto;
+            background-color: white;
+            border-color: black;
+            color: black;
+            &:hover {
+                color: black; // var(--main-text-color);
+                background-color: var(--main-bg-color);
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .item-display {
+        p {
+            font-size: small;
+            // margin-bottom: 10px;
+        }
+
+        .btn-ver-mas {
+            font-size: small;
+            padding: 2px 4px;
+        }
+    }
 }
