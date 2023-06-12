@@ -38,7 +38,7 @@ export const Navbar = () => {
                 <div id="user-options">
                     <div className='user-options'>
                         <h6>Bienvenido: {user.email}</h6>
-                        <a onClick={logout}>Logout</a>
+                        <p onClick={logout}>Logout</p>
                     </div>
                 </div>
             </Collapse>

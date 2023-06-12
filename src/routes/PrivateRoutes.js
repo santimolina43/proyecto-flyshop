@@ -7,6 +7,7 @@ import { Cart } from '../components/Cart/Cart';
 import { Error404 } from "../components/Error404/Error404";
 import { Checkout } from "../components/Checkout/Checkout";
 import { Footer } from "../components/Footer/Footer";
+// import { Checkout } from "../components/Checkout/Checkout";
 
 
 export const PrivateRoutes = () => {
